@@ -142,9 +142,7 @@ nifty_100_stocks = [
     "PIIND.NS", "JUBLFOOD.NS", "DLF.NS", "HINDPETRO.NS", "IGL.NS",
     "LTI.NS", "MPHASIS.NS", "MRF.NS", "NAUKRI.NS", "PFC.NS"
 ]
-# Define custom CSS for changing text color
 
-from st_aggrid import AgGrid
 
 st.set_page_config(layout="wide")
 def app(data_bull,data_bear):
