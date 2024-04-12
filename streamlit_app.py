@@ -58,7 +58,7 @@ def compute_indicators(df):
     df['Close_1']=df['Close'].shift(1)
     df['Close_2']=df['Close'].shift(2)
     df['Close_3']=df['Close'].shift(3)
-     df['Close_4']=df['Close'].shift(4)
+    df['Close_4']=df['Close'].shift(4)
     # Determine bullish or bearish condition
     df['Condition'] = 'Neutral'
     df.loc[((df['RSI'] > 85) & ((df['Close_0']>df['Close_1']) &(df['Close_1']>df['Close_2']) &(df['Close_2']>df['Close_3'])&(df['Close_3']>df['Close_4']))), 'Condition'] = 'Bullish'
