@@ -142,8 +142,8 @@ def process_all_stocks(stocks_list):
         data = fetch_data(symbol)
         if not data.empty:
             data_bulish, data_bearish = compute_indicators(data)
-            data_bulish['Symbol'] = symbol[:-2]  # Add a column to identify the stock symbol
-            data_bearish['Symbol'] = symbol[:-2] 
+            data_bulish['Symbol'] = symbol[:-3]  # Add a column to identify the stock symbol
+            data_bearish['Symbol'] = symbol[:-3] 
             all_data_bulish.append(data_bulish)
             all_data_bearish.append(data_bearish)
         else:
