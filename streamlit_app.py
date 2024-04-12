@@ -24,7 +24,7 @@ start_date = end_date - datetime.timedelta(days=5)
 
 def fetch_data(ticker):
     # Download the historical data for Bank Nifty with a 1-minute interval
-    data = yf.download(tickers=ticker, start=start_date, end=current_time, interval="1m")
+    data = yf.download(tickers=ticker, start=start_date, end=current_time, interval="5m")
     return data
 
 # Hull Moving Average
