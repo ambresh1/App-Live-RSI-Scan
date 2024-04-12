@@ -3,3 +3,4 @@ pandas_ta
 yfinance
 numpy
 streamlit
+streamlit-lightweight-charts
