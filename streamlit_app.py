@@ -18,7 +18,7 @@ indian_timezone = pytz.timezone('Asia/Kolkata')
 current_time = dt.datetime.now(indian_timezone)#.strftime("%H:%M:%S")
 today= d.datetime.today().date()#.strftime("%Y-%m-%d") 
 
-end_date = datetime.datetime.now() + datetime.timedelta(days=1)
+end_date = datetime.datetime.now(indian_timezone) + datetime.timedelta(days=1)
 # Function to fetch 1-min live data
 start_date = end_date - datetime.timedelta(days=5)
 
