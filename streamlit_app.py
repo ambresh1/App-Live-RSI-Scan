@@ -61,8 +61,8 @@ def compute_indicators(df):
     # df['Close_4']=df['Close'].shift(4)
     # Determine bullish or bearish condition
     df['Condition'] = 'Neutral'
-    df.loc[((df['RSI'] > 85) & ((df['Close_0']>df['Close_1']) &(df['Close_1']>df['Close_2']) &(df['Close_2']>df['Close_3']))), 'Condition'] = 'Bullish'
-    df.loc[((df['RSI'] < 15)& ((df['Close_0']<df['Close_1']) &(df['Close_1']<df['Close_2']) &(df['Close_2']<df['Close_3']))), 'Condition'] = 'Bearish'
+    df.loc[((df['RSI'] > 85) & ((df['Close_0']>df['Close_1']) &(df['Close_1']>df['Close_2']) &(df['Close_2']>df['Close_3'])&(df['Close_3']>df['Close_4']))), 'Condition'] = 'Bullish'
+    df.loc[((df['RSI'] < 15)& ((df['Close_0']<df['Close_1']) &(df['Close_1']<df['Close_2']) &(df['Close_2']<df['Close_3'])&(df['Close_3']<df['Close_4']))), 'Condition'] = 'Bearish'
     df['Datetime']=pd.to_datetime(df.index)
     # print(df.tail())
     # df.index=df['Datetime'].dt.tz_convert(None)
