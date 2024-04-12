@@ -7,13 +7,22 @@ import numpy as np
 import pandas_ta as ta
 
 import datetime
+import pytz
+
+# Set the desired time zone (Indian Standard Time)
+indian_timezone = pytz.timezone('Asia/Kolkata')
+
+# Get the current time in the Indian time zone
+current_time = dt.datetime.now(indian_timezone).strftime("%H:%M:%S")
+today= d.datetime.today().date()#.strftime("%Y-%m-%d") 
 
 end_date = datetime.datetime.now() + datetime.timedelta(days=1)
 # Function to fetch 1-min live data
 start_date = end_date - datetime.timedelta(days=5)
+
 def fetch_data(ticker):
     # Download the historical data for Bank Nifty with a 1-minute interval
-    data = yf.download(tickers=ticker, start=start_date, end=end_date, interval="1m")
+    data = yf.download(tickers=ticker, start=start_date, end=current_time, interval="1m")
     return data
 
 # Hull Moving Average
