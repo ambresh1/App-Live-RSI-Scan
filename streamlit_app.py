@@ -6,9 +6,14 @@ import pandas as pd
 import numpy as np
 import pandas_ta as ta
 
+import datetime
+
+end_date = datetime.datetime.now() + datetime.timedelta(days=1)
 # Function to fetch 1-min live data
+start_date = end_date - datetime.timedelta(days=5)
 def fetch_data(ticker):
-    data = yf.download(tickers=ticker, period="5d", interval="1m")
+    # Download the historical data for Bank Nifty with a 1-minute interval
+    data = yf.download(tickers=ticker, start=start_date, end=end_date, interval="1m")
     return data
 
 # Hull Moving Average
