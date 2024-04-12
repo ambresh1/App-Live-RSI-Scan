@@ -159,7 +159,7 @@ def process_all_stocks(stocks_list):
 
 # Function to run in a non-Streamlit environment (for demonstration)
 def main():
-    data_bull,data_bear = process_all_stocks(top_10_stocks)
+    data_bull,data_bear = process_all_stocks(nifty_100_stocks)
     if not data_bull.empty:
         app(data_bull,data_bear)
         # print(merged_data.tail(10))
