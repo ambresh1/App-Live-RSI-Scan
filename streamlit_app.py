@@ -15,7 +15,7 @@ import pytz
 indian_timezone = pytz.timezone('Asia/Kolkata')
 
 # Get the current time in the Indian time zone
-current_time = dt.datetime.now(indian_timezone).strftime("%H:%M:%S")
+current_time = dt.datetime.now(indian_timezone)#.strftime("%H:%M:%S")
 today= d.datetime.today().date()#.strftime("%Y-%m-%d") 
 
 end_date = datetime.datetime.now() + datetime.timedelta(days=1)
