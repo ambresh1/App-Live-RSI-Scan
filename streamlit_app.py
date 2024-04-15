@@ -159,7 +159,7 @@ def process_all_stocks(stocks_list,time_frame):
 
 # Function to run in a non-Streamlit environment (for demonstration)
 def main():
-    selected_TF = st.radio("Select Any TF :",['1min','5min'],horizontal=True)
+    selected_TF = st.radio("Select Any TF :",['1m','5m'],horizontal=True)
     data_bull,data_bear = process_all_stocks(nifty_100_stocks,selected_TF)
     if not data_bull.empty:
         app(data_bull,data_bear)
