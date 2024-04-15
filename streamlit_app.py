@@ -22,9 +22,9 @@ end_date = datetime.datetime.now() + datetime.timedelta(days=1)
 # Function to fetch 1-min live data
 start_date = end_date - datetime.timedelta(days=5)
 
-def fetch_data(ticker):
+def fetch_data(ticker,time_frame):
     # Download the historical data for Bank Nifty with a 1-minute interval
-    data = yf.download(tickers=ticker, start=start_date, end=current_time, interval="5m")
+    data = yf.download(tickers=ticker, start=start_date, end=current_time, interval=time_frame)
     return data
 
 # Hull Moving Average
@@ -95,9 +95,8 @@ nifty_100_stocks = [
 
 
 st.set_page_config(layout="wide")
+st.title('2RSI Scanner Streamlit App')
 def app(data_bull,data_bear):
-    st.title('2RSI Scanner Streamlit App')
-
     # Convert 'Date' column to datetime format and extract date component
     data_bull['Date'] = pd.to_datetime(data_bull.index).date
     data_bull['Time'] = pd.to_datetime(data_bull.index).time
@@ -136,11 +135,11 @@ def app(data_bull,data_bear):
 
 # Assuming fetch_data and compute_indicators are defined elsewhere
 
-def process_all_stocks(stocks_list):
+def process_all_stocks(stocks_list,time_frame):
     all_data_bulish = []  # List to store data from all stocks
     all_data_bearish = []
     for symbol in stocks_list:
-        data = fetch_data(symbol)
+        data = fetch_data(symbol,time_frame)
         if not data.empty:
             data_bulish, data_bearish = compute_indicators(data)
             data_bulish['Symbol'] = symbol[:-3]  # Add a column to identify the stock symbol
@@ -160,7 +159,8 @@ def process_all_stocks(stocks_list):
 
 # Function to run in a non-Streamlit environment (for demonstration)
 def main():
-    data_bull,data_bear = process_all_stocks(nifty_100_stocks)
+    selected_TF = st.radio("Select Any TF :",['1min','5min'],horizontal=True)
+    data_bull,data_bear = process_all_stocks(nifty_100_stocks,selected_TF)
     if not data_bull.empty:
         app(data_bull,data_bear)
         # print(merged_data.tail(10))
