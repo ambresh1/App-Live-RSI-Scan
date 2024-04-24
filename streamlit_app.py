@@ -114,7 +114,8 @@ def app(data_bull,data_bear):
     data_bear.reset_index(drop=True, inplace=True)
     # Display selectbox in Streamlit
     #selected_date = st.selectbox("Select Date", unique_dates,index=1)
-    selected_date = st.radio("Select Any Date :",unique_dates,horizontal=True)
+    most_recent_date = get_most_recent_date(unique_dates)
+    selected_date = st.radio("Select Any Date :",unique_dates,horizontal=True,index=unique_dates.index(most_recent_date))
     # st.write("Selected Date:", selected_date)
     col1, col2 = st.columns(2)
     with col1:
