@@ -73,7 +73,7 @@ top_10_stocks = ['RELIANCE.NS', 'TCS.NS', 'HDFCBANK.NS', 'INFY.NS', 'HINDUNILVR.
 
 nifty_100_stocks = [
     "RELIANCE.NS", "TCS.NS", "HDFCBANK.NS", "INFY.NS", "HINDUNILVR.NS",
-    "HDFC.NS", "ICICIBANK.NS", "KOTAKBANK.NS", "ITC.NS", "SBIN.NS",
+    "ICICIBANK.NS", "KOTAKBANK.NS", "ITC.NS", "SBIN.NS",
     "BHARTIARTL.NS", "ASIANPAINT.NS", "HCLTECH.NS", "WIPRO.NS", "DMART.NS",
     "LT.NS", "BAJFINANCE.NS", "AXISBANK.NS", "MARUTI.NS", "ULTRACEMCO.NS",
     "ONGC.NS", "SUNPHARMA.NS", "NTPC.NS", "TITAN.NS", "TECHM.NS",
@@ -115,7 +115,7 @@ def app(data_bull,data_bear):
     # Display selectbox in Streamlit
     #selected_date = st.selectbox("Select Date", unique_dates,index=1)
     most_recent_date = max(unique_dates)
-    selected_date = st.radio("Select Any Date :",unique_dates,horizontal=True,index=unique_dates.index(most_recent_date))
+    selected_date = st.radio("Select Any Date :",unique_dates,horizontal=True,index=np.argmax(np.array(unique_dates)))
     # st.write("Selected Date:", selected_date)
     col1, col2 = st.columns(2)
     with col1:
@@ -160,7 +160,7 @@ def process_all_stocks(stocks_list,time_frame):
 
 # Function to run in a non-Streamlit environment (for demonstration)
 def main():
-    selected_TF = st.radio("Select Any TF :",['5m','5m'],horizontal=True)
+    selected_TF = st.radio("Select Any TF :",['5m'],horizontal=True)
     data_bull,data_bear = process_all_stocks(nifty_100_stocks,selected_TF)
     if not data_bull.empty:
         app(data_bull,data_bear)
