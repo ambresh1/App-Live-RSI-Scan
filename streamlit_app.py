@@ -104,7 +104,7 @@ def app(data_bull,data_bear):
     data_bear['Date'] = pd.to_datetime(data_bear.index).date
     data_bear['Time'] = pd.to_datetime(data_bear.index).time
     # Get unique dates
-    unique_dates = data_bull['Date'].unique()
+    unique_dates = list(data_bull['Date'].unique())
 
     # data_bull.index=data_bull['Time']
     # data_bull=data_bull.sort_index()
@@ -115,7 +115,7 @@ def app(data_bull,data_bear):
     # Display selectbox in Streamlit
     #selected_date = st.selectbox("Select Date", unique_dates,index=1)
     most_recent_date = max(unique_dates)
-    selected_date = st.radio("Select Any Date :",unique_dates,horizontal=True) #,index=np.argmax(np.array(unique_dates))
+    selected_date = st.radio("Select Any Date :",unique_dates,horizontal=True,index=unique_dates,index(most_recent_date) #,index=np.argmax(np.array(unique_dates))
     # st.write("Selected Date:", selected_date)
     col1, col2 = st.columns(2)
     with col1:
