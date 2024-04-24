@@ -115,7 +115,7 @@ def app(data_bull,data_bear):
     # Display selectbox in Streamlit
     #selected_date = st.selectbox("Select Date", unique_dates,index=1)
     most_recent_date = max(unique_dates)
-    selected_date = st.radio("Select Any Date :",unique_dates,horizontal=True,index=np.argmax(np.array(unique_dates)))
+    selected_date = st.radio("Select Any Date :",unique_dates,horizontal=True) #,index=np.argmax(np.array(unique_dates))
     # st.write("Selected Date:", selected_date)
     col1, col2 = st.columns(2)
     with col1:
