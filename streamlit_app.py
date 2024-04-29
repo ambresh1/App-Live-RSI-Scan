@@ -172,7 +172,7 @@ def main():
         print("No data available for any of the symbols.")
 
 # Run the main function
-if st.button("Reload"):
+if st.button("↻"): # Reload
     st.rerun()
     
 if __name__ == "__main__":
