@@ -122,12 +122,14 @@ def app(data_bull,data_bear):
         data_bull_date=data_bull[data_bull['Date']==selected_date]
         st.write("Bulish Signal Conditions:",selected_date)
         if len(data_bull_date)>0:
+            data_bull_date=data_bull_date.sort_values("Time")
             st.dataframe(data_bull_date[['Time','Close','RSI','Symbol']].style.set_properties(**{'color': 'green'}).format({"Close": "{:.2f}","RSI": "{:.2f}"}),width=500) #.style.format({"Close": "{:.2f}","RSI": "{:.2f}"})
         else : 
             st.write("No Data")
     with col2:
         data_bear_date=data_bear[data_bear['Date']==selected_date]
         st.write("Bearish Signal Conditions:",selected_date)
+        data_bear_date=data_bear_date.sort_values("Time")
         st.dataframe(data_bear_date[['Time','Close','RSI','Symbol']].style.set_properties(**{'color': 'red'}).format({"Close": "{:.2f}","RSI": "{:.2f}"}),width=500)
     # else:
     #     st.write("No data found for the symbol.")
