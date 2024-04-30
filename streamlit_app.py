@@ -95,7 +95,7 @@ nifty_100_stocks = [
 
 
 st.set_page_config(layout="wide")
-st.title('2RSI Scanner Streamlit App')
+st.title('RSI Scanner App')
 def app(data_bull,data_bear):
     # Convert 'Date' column to datetime format and extract date component
     data_bull['Date'] = pd.to_datetime(data_bull.index).date
