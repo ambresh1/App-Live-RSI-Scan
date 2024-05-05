@@ -68,7 +68,8 @@ def compute_indicators(df):
     # df.index=df['Datetime'].dt.tz_convert(None)
     df_bullish = df[(df['Condition']=='Bullish') ]
     df_bearish = df[(df['Condition']=='Bearish') ]
-    return df_bullish, df_bearish
+    df_both =df[(df['Condition']=='Bullish')| (df['Condition']=='Bearish')]
+    return df_bullish, df_bearish,  df_both
 top_10_stocks = ['RELIANCE.NS', 'TCS.NS', 'HDFCBANK.NS', 'INFY.NS', 'HINDUNILVR.NS', 'ADANIPORTS.NS', 'ICICIBANK.NS', 'KOTAKBANK.NS', 'SBIN.NS', 'BAJFINANCE.NS']
 
 nifty_100_stocks = [
@@ -141,14 +142,17 @@ def app(data_bull,data_bear):
 def process_all_stocks(stocks_list,time_frame):
     all_data_bulish = []  # List to store data from all stocks
     all_data_bearish = []
+    df_both_l=[]
     for symbol in stocks_list:
         data = fetch_data(symbol,time_frame)
         if not data.empty:
-            data_bulish, data_bearish = compute_indicators(data)
+            data_bulish, data_bearish ,df_both= compute_indicators(data)
             data_bulish['Symbol'] = symbol[:-3]  # Add a column to identify the stock symbol
             data_bearish['Symbol'] = symbol[:-3] 
+            df_both['Symbol'] = symbol[:-3]
             all_data_bulish.append(data_bulish)
             all_data_bearish.append(data_bearish)
+            df_both_l.append(df_both)
         else:
             print(f"No data found for {symbol}.")  # Adjusted for a non-Streamlit context
 
@@ -156,16 +160,18 @@ def process_all_stocks(stocks_list,time_frame):
     if all_data_bulish and all_data_bearish:
         final_df_bulish = pd.concat(all_data_bulish)
         final_df_bearish = pd.concat(all_data_bearish)
-        return final_df_bulish,final_df_bearish
+        final_df_both = pd.concat(df_both_l)
+        return final_df_bulish,final_df_bearish,final_df_both
     else:
-        return pd.DataFrame() ,pd.DataFrame # Return an empty DataFrame if no data was processed
+        return pd.DataFrame() ,pd.DataFrame(),pd.DataFrame() # Return an empty DataFrame if no data was processed
 
 # Function to run in a non-Streamlit environment (for demonstration)
 def main():
     selected_TF = st.radio("Select Any TF :",['5m'],horizontal=True)
-    data_bull,data_bear = process_all_stocks(nifty_100_stocks,selected_TF)
+    data_bull,data_bear,data_both = process_all_stocks(nifty_100_stocks,selected_TF)
     if not data_bull.empty:
         app(data_bull,data_bear)
+        st.write(data_both)
         # print(merged_data.tail(10))
 
     else:
