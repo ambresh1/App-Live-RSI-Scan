@@ -189,5 +189,6 @@ if __name__ == "__main__":
     timer = 300  # 5 minutes in seconds
     while True:
         time.sleep(timer)
+        st.cache_data.clear()
         st.experimental_rerun()
     # app()
