@@ -10,6 +10,7 @@ import datetime
 import datetime as dt
 import datetime as d
 import pytz
+import time
 
 # Set the desired time zone (Indian Standard Time)
 indian_timezone = pytz.timezone('Asia/Kolkata')
@@ -184,4 +185,9 @@ if st.button("↻"): # Reload
 if __name__ == "__main__":
 
     main()
+    # Timer to reload the site every 5 minutes
+    timer = 300  # 5 minutes in seconds
+    while True:
+        time.sleep(timer)
+        st.experimental_rerun()
     # app()
