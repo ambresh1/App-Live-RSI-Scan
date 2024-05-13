@@ -127,7 +127,7 @@ def app(data_bull,data_bear):
             st.dataframe(data_bull_date[['Time','Close','RSI','Symbol']].style.set_properties(**{'color': 'green'}).format({"Close": "{:.2f}","RSI": "{:.2f}"}),width=500) #.style.format({"Close": "{:.2f}","RSI": "{:.2f}"})
         else : 
             st.write("No Data")
-    with col2:
+    with col1:
         data_bear_date=data_bear[data_bear['Date']==selected_date]
         st.write("Bearish Signal Conditions:",selected_date)
         data_bear_date=data_bear_date.sort_values("Time",ascending=False)
