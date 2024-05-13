@@ -186,9 +186,9 @@ if __name__ == "__main__":
 
     main()
     # Timer to reload the site every 5 minutes
-    timer = 300  # 5 minutes in seconds
-    while True:
-        time.sleep(timer)
-        st.cache_data.clear()
-        st.experimental_rerun()
+    # timer = 300  # 5 minutes in seconds
+    # while True:
+    #     time.sleep(timer)
+    #     st.cache_data.clear()
+    #     st.experimental_rerun()
     # app()
