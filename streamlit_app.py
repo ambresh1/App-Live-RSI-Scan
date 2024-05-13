@@ -171,7 +171,7 @@ def main():
     data_bull,data_bear,data_both = process_all_stocks(nifty_100_stocks,selected_TF)
     if not data_bull.empty:
         app(data_bull,data_bear)
-        st.write(data_both)
+        # st.write(data_both)
         # print(merged_data.tail(10))
 
     else:
