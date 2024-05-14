@@ -98,7 +98,7 @@ nifty_100_stocks = [
 
 st.set_page_config(layout="wide")
 st.title('RSI Scanner App')
-st.write("current_time")
+st.write(current_time)
 def app(data_bull,data_bear):
     # Convert 'Date' column to datetime format and extract date component
     data_bull['Date'] = pd.to_datetime(data_bull.index).date
