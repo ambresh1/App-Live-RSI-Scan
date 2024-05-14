@@ -180,6 +180,7 @@ def main():
 
 # Run the main function
 if st.button("↻"): # Reload
+    st.cache_data.clear()
     st.rerun()
     
 if __name__ == "__main__":
